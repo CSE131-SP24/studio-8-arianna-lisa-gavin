@@ -10,6 +10,17 @@ public class Quiz {
 		this.questions = questions;
 	}
 	
+	
+	public Question[] getQuestions() {
+		return questions;
+	}
+
+
+	public void setQuestions(Question[] questions) {
+		this.questions = questions;
+	}
+
+
 	private String getUserAnswer() {
 		Scanner in = new Scanner(System.in);
 		System.out.print("Please enter your answer: ");
@@ -26,6 +37,17 @@ public class Quiz {
 	}
 	
 	public void takeQuiz() {
+		int pointsEarned=0;
+		for(int i=0;i<this.questions.length;i++) {
+			this.questions[i].displayPrompt();
+            String answer=this.getUserAnswer();
+            int  questionPointsEarned=this.questions[i].checkAnswer(answer);
+            pointsEarned=pointsEarned+questionPointsEarned;
+            System.out.println(questionPointsEarned);
+		}
+		System.out.println("Total points earned: "+pointsEarned);
+		int totalPoints=this.getTotalPoints();
+		System.out.println("Out of total points: "+totalPoints);
 		//FIXME
 	}
 	
